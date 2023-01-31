@@ -16,7 +16,6 @@ jobs:
         uses: xom9ikk/version-by-tag@v1
         id: version_by_tag
         with:
-          path: custom_path_to_repo
           isUseGithubRunNumber: false
           offset: 77
 
