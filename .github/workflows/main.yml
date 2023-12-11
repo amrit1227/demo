@@ -1,26 +1,56 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Helm Checks
+
+# Controls when the workflow will run
 on:
+
   workflow_dispatch:
 
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  # This workflow contains a single job called "build"
   build:
+    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          path: custom_path_to_repo
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+        with: 
+          repository: "https://github.com/amrit1227/signtogod-helm-chart.git"
 
-      - name: Get version and version code
-        uses: xom9ikk/version-by-tag@v1
-        id: version_by_tag
-        with:
-          isUseGithubRunNumber: false
-          offset: 77
+      - name: test repo
+        run : | 
+             ls
+          
 
-      - name: Some other action
-        run: |
-          echo "Tag: ${{ steps.version_by_tag.outputs.tag }}"
-          echo "Semver: ${{ steps.version_by_tag.outputs.semver }}"
-          echo "Version code: ${{ steps.version_by_tag.outputs.versionCode }}"
+      # - name: Helm tool installer
+      #   uses: Azure/setup-helm@v3
+      #   with:
+      #     version: v3.13.1
+      #     # GitHub token. Required only if 'version' == 'latest'
+      # - name: install kubectl
+      #   uses: Azure/setup-kubectl@v3
+      #   with:
+      #     version: latest
+          
+
+      # # Runs a single command using the runners shell
+      # - name: Run a one-line script
+      #   run: ls
+
+      # # Runs a set of commands using the runners shell
+      # - name: Run a multi-line script
+      #   run: helm template . --namespace signtogod > ./generatetemplate/manifest.yaml
+
+      # - name: Update Helm Template
+      #   run : |
+      #     git config --global user.email "amrit1227@gmail.com"
+      #     git config --global user.name "amrit1227"
+      #     git add .
+      #     git commit -m "added new template $GITHUB_RUN_NUMBER"
+      #     git push origin main
+
+
