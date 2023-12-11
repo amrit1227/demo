@@ -21,7 +21,7 @@ jobs:
         with: 
           repository: amrit1227/signtogod-helm-chart
           ref: main
-          token: ${{secrets.HELM_PAT}}
+          ssh-key: ${{secrets.SSH_KEY}}
 
       - name: test repo
         run : | 
