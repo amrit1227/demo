@@ -19,7 +19,8 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
         with: 
-          repository: "amrit1227/signtogod-helm-chart:main"
+          repository: "amrit1227/signtogod-helm-chart"
+          ref: "main"
 
       - name: test repo
         run : | 
