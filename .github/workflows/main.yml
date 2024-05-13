@@ -14,7 +14,44 @@ jobs:
     steps:
       - name: Run a command and capture the output
         id: plan
-        run: cat << "Hello$World" # Example command, replace with your own
+        run:  |
+              output=$(cat <<EOF
+              Changes to Outputs:
+              ~ auth0_prompt_custom_text = {
+                  ~ login = {
+                      ~ body     = jsonencode( # whitespace changes
+                            {
+                                login = {
+                                    alertListTitle                = "Alerts"
+                                    buttonText                    = "Continue"
+                                    editEmailText                 = "Edit"
+                                    emailPlaceholder              = "Email address"
+                                    federatedConnectionButtonText = "Continue with ${connectionName}"
+                                    footerLinkText                = "Sign up"
+                                    footerText                    = "Don't have an account?"
+                                    forgotPasswordText            = "Forgot password?"
+                                    invitationDescription         = "Log in to accept ${inviterName}'s invitation to join ${companyName} on ${clientName}."
+                                    invitationTitle               = "You've Been Invited!"
+                                    logoAltText                   = "${companyName}"
+                                    passwordPlaceholder           = "Password"
+                                    separatorText                 = "Or"
+                                    signupActionLinkText          = "${footerLinkText}"
+                                    signupActionText              = "${footerText}"
+                                    title                         = "Welcome"
+                                    usernamePlaceholder           = "Username or email address"
+                                }
+                            }
+                        )
+                        id       = "login::en"
+                        # (2 unchanged elements hidden)
+                    }
+                }
+            
+              You can apply this plan to save these new output values to the Terraform
+              state, without changing any real infrastructure.
+               EOF)
+              GITHUB_STEP_SUMMARY="${GITHUB_STEP_SUMMARY}${output}"
+              echo "${GITHUB_STEP_SUMMARY}"
 
       - name: Replace special character in the output
         run: |
