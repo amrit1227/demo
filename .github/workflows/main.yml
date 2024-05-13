@@ -14,7 +14,7 @@ jobs:
     steps:
       - name: Run a command and capture the output
         id: plan
-        run: echo "Hello$World" # Example command, replace with your own
+        run: cat << "Hello$World" # Example command, replace with your own
 
       - name: Replace special character in the output
         run: |
