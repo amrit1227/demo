@@ -49,8 +49,7 @@ jobs:
             
               You can apply this plan to save these new output values to the Terraform
               state, without changing any real infrastructure.
-              EOF
-              )
+              EOF)
               GITHUB_STEP_SUMMARY="${GITHUB_STEP_SUMMARY}${output}"
               echo "${GITHUB_STEP_SUMMARY}"
 
